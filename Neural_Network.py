@@ -131,10 +131,10 @@ class Network:
 		a_lj.append(np.ones(self.net_top[len(self.net_top)-1]))
 		return a_lj
 	
-	def sigmoid_(self,theta,x):
+	def sigmoid(self,theta,x):
 		return 1/(1+np.exp(np.sum((-1*theta*x),axis=1)))
 
-	def sigmoid(self,theta,x):
+	def tanh(self,theta,x):
 		exp = np.sum((theta*x),axis=1)
 		return (np.exp(exp)-np.exp(-1*exp))/(np.exp(exp)+np.exp(-1*exp))
 
