@@ -1,8 +1,4 @@
-from mpl_toolkits.mplot3d import Axes3D
-import matplotlib.pyplot as plt
 import numpy as np
-import pylab
-import scipy.io as sio
 
 def costGradFuncLogisticReg(net_top,m,features,y,theta,lambda_1):
 	s = []
@@ -226,12 +222,14 @@ class Network:
 				self.delta = self.backProp(y_train[m_i],self.delta)
 				cost_i = self.costFuncLogisticReg(y_train[m_i])
 				cost.append(cost_i)
+
 			print("Epoch",c,"Loss:",(0.5/self.m)*np.sum(cost))
 
 			if (c%10==0):
 				contour = NN.classificaionContour(-1,1,0.1)
 				plt.imshow(contour, cmap='rainbow', interpolation='nearest')
 				plt.pause(0.05)
+				
 			self.updateTheta()
 			
 		plt.show()
@@ -239,6 +237,9 @@ class Network:
 
 from sklearn.datasets import make_circles
 import matplotlib.pyplot as plt
+
+
+
 
 dataset = make_circles(n_samples=500,noise=0.1,factor=0.5, random_state=1)
 
@@ -262,16 +263,16 @@ y_train = labels[:int(data_len*0.7)]
 y_test = labels[int(data_len*0.3):]
 
 
-###################################################
+########################################################################
 
 ###########~~~~~~~~NETWORK SETTINGS & INPUT DATA~~~~~~~~################
 
-###################################################
+########################################################################
 
 
 NN = Network(2,[2,6,1],30,1,0.0)
 
-insert_ = X_train[:,[0]]*X_train[:,[0]]
+#insert_ = X_train[:,[0]]*X_train[:,[0]]
 #X_train = np.append(X_train,insert_,axis=1)
 
 NN.trainNN(X_train,y_train,1000)
