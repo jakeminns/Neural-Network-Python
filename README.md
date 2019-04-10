@@ -1,6 +1,6 @@
 # Python_Neural_Network
 
-A simple configurable feedfroward neural network that impliments the backpropergation algorithm.
+A simple configurable feedforward neural network that impliments the backpropergation algorithm.
 
 An example classifcation problem is included with training data generated with the sklearn package.
 
