@@ -1,4 +1,4 @@
-# Python_Neural_Network
+# Python Neural Network
 
 A simple configurable feedforward neural network that impliments the backpropergation algorithm.
 
