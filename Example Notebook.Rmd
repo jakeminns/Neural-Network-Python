@@ -1,0 +1,75 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.13.0
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
+```{python}
+from sklearn import datasets
+import matplotlib.pyplot as plt
+import numpy as np
+
+dataset = datasets.make_circles(n_samples=500,noise=0.1,factor=0.5, random_state=1)
+
+features = dataset[0]
+print("Features:",features[:10])
+labels = dataset[1]
+print("Labels:",labels[:10])
+```
+
+```{python}
+labels = labels.reshape(labels.shape[0],1)
+
+data_len = features.shape[0]
+
+X_train = features[:int(data_len*0.7)]
+X_test = features[int(data_len*0.3):]
+y_train = labels[:int(data_len*0.7)]
+y_test = labels[int(data_len*0.3):]
+```
+
+```{python}
+import matplotlib.pyplot as plt
+plt.scatter(X_train[:,[0]],X_train[:,[1]],c=y_train[:])
+```
+
+```{python}
+insert_ = X_train[:,[0]]*X_train[:,[0]]
+X_train = np.append(X_train,insert_,axis=1)
+insert_ = X_train[:,[1]]*X_train[:,[1]]
+X_train = np.append(X_train,insert_,axis=1)
+
+insert_ = X_test[:,[0]]*X_test[:,[0]]
+X_test = np.append(X_test,insert_,axis=1)
+insert_ = X_test[:,[1]]*X_test[:,[1]]
+X_test = np.append(X_test,insert_,axis=1)
+```
+
+```{python}
+from network import *
+
+net = Network(4,[4,5,1],0.5,2,0)
+```
+
+```{python}
+print(X_train.shape)
+net.trainNN(X_train,y_train,300,plot=True)
+```
+
+```{python}
+contour = net.classificaionContour(-1.0,1.0,0.1)
+
+plt.imshow(contour, cmap='rainbow', interpolation='nearest')
+```
+
+```{python}
+
+```
